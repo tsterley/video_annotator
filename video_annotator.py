@@ -69,7 +69,6 @@ def add_pause_button(img):
     ch, cw = [f/2 for f in img.shape[:2]]
     img[ch-P_HALF_H:ch+P_HALF_H, cw-P_FAR_W:cw-P_NEAR_W, :] = P_COLOUR
     img[ch-P_HALF_H:ch+P_HALF_H, cw+P_NEAR_W:cw+P_FAR_W, :] = P_COLOUR
-
     return img
 
 def string_from_time(time_ms):

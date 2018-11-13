@@ -7,10 +7,9 @@ if getattr(sys, 'frozen', False):
     ROOT_FOLDER = os.path.dirname(os.path.realpath(sys.executable))
 elif __file__:
     ROOT_FOLDER = os.path.dirname(os.path.realpath(__file__))
-SAVE_FOLDER = os.path.join(ROOT_FOLDER, "analysis")
 
-CHART_HEIGHT = 100
-RES_SCALAR   = 0.01 # 0.1 second resolution
+CHART_HEIGHT = 500
+CHART_WIDTH  = 5000
 GRAY_LEVEL   = 25
 
 
@@ -33,7 +32,6 @@ def load_data(data_location):
 
 def get_action_totals(behaviours):
     totals = {}
-
     for b in behaviours:
         b_name = b[0]
         b_length = b[2]
@@ -46,7 +44,8 @@ def extract_col(col_string):
 
 def create_behaviour_chart(behaviours, save_folder, colour_map):
     # Get scaled times (for block widths)
-    scaled_times = [int(b[2]*RES_SCALAR) for b in behaviours]
+    total_time   = sum([b[2] for b in behaviours])
+    scaled_times = [int(b[2]*(CHART_WIDTH/total_time)) for b in behaviours]
 
     # Create blank image
     chart_width = sum(scaled_times)
@@ -66,10 +65,8 @@ def create_behaviour_chart(behaviours, save_folder, colour_map):
     for b in chart_image_ind:
         cv2.imwrite(os.path.join(save_folder, b + ".jpeg"), chart_image_ind[b])
 
-# def analyse_annotation(file_name):
 def analyse_annotation(results_folder):
     # Load data
-    # data_location = os.path.join(ROOT_FOLDER, "annotations", file_name + ".csv")
     data_location = os.path.join(results_folder, "annotations.csv")
     inp_data = load_data(data_location)
 
@@ -106,5 +103,5 @@ def analyse_annotation(results_folder):
 
 
 if __name__ == "__main__":
-    file_name = "example"
-    analyse_annotation(file_name)
+    folder_name = os.path.join("results", "example")
+    analyse_annotation(folder_name)
