@@ -21,7 +21,6 @@ FAST_KEY = ']'
 SLOW_KEY = '['
 BACK_KEY = ','
 FORW_KEY = '.'
-SAVE_KEY = 's'
 
 MAX_SPEED_MULT = 5
 JUMP_SIZE = 50
@@ -260,21 +259,20 @@ def analyse_video(video_location, mouse_actions):
             paused = not paused
 
     # pop the question
-    cv2.putText(frame, "Press '%s' to save and" % SAVE_KEY, (PB_OFF_W, int(vid_hgt/2) + 100), cv2.FONT_HERSHEY_PLAIN, 2, COL_WHITE, 2)
-    cv2.putText(frame, "any other key to quit.", (PB_OFF_W, int(vid_hgt/2) + 150), cv2.FONT_HERSHEY_PLAIN, 2, COL_WHITE, 2)
+    cv2.putText(frame, "Press any key to", (PB_OFF_W, int(vid_hgt/2) + 100), cv2.FONT_HERSHEY_PLAIN, 2, COL_WHITE, 2)
+    cv2.putText(frame, "save and quit.",   (PB_OFF_W, int(vid_hgt/2) + 150), cv2.FONT_HERSHEY_PLAIN, 2, COL_WHITE, 2)
     cv2.imshow('frame', frame)
     decision = chr(get_key_pressed(0))
 
     out_actions = None
-    if decision == SAVE_KEY:
-        print "Saving"
+    print "Saving"
 
-        # Save action changes
-        out_actions = [(actions[0], frame_i_to_t(0))]
-        for i in xrange(1, vid_len):
-            if actions[i] != actions[i-1]:
-                out_actions.append((actions[i], frame_i_to_t(i)))
-        out_actions.append(("VIDEO_END", frame_i_to_t(vid_len)))
+    # Save action changes
+    out_actions = [(actions[0], frame_i_to_t(0))]
+    for i in xrange(1, vid_len):
+        if actions[i] != actions[i-1]:
+            out_actions.append((actions[i], frame_i_to_t(i)))
+    out_actions.append(("VIDEO_END", frame_i_to_t(vid_len)))
 
     inp_video.release()
     cv2.destroyAllWindows()
