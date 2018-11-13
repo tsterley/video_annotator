@@ -1,0 +1,12 @@
+actions:
+    default: 2
+    selectable: 
+        - name: sniff
+          key: a
+          colour: 1.0,0.8,0.8
+        - name: groom
+          key: s
+          colour: 0.8,1.0,0.8
+        - name: walk
+          key: d
+          colour: 0.8,0.8,1.0

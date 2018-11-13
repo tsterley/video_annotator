@@ -1,0 +1,13 @@
+<PickerRoot>:  
+    id: picker
+    orientation: "vertical"
+    padding: root.width * .02, root.height * .02
+    spacing: "10dp"
+
+    # We create the widgets
+    Button
+        text: "open"
+        on_release: picker.open(filechooser.path, filechooser.selection)
+    FileChooserListView:
+        id: filechooser
+        on_selection: picker.selected(filechooser.selection)

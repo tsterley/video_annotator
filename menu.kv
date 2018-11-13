@@ -1,0 +1,22 @@
+<MenuRoot>:  
+    orientation: "vertical"
+    padding: root.width * .02, root.height * .02
+    spacing: "10dp"
+
+    # We create the widgets
+    Label:
+        id: label_text
+        text: "Hullo"
+        font_size: "30dp"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "30dp"
+        Button:
+            text: "Load"
+            on_release: root.on_button_load()
+        Button:
+            text: "Config"
+            on_release: root.on_button_config()
+        Button:
+            text: "Quit"
+            on_release: root.on_button_quit()
