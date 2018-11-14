@@ -5,9 +5,8 @@ block_cipher = None
 
 
 a = Analysis(['main_menu.py'],
-             pathex=['C:\\Users\\User\\Documents\\video-annot'],
              binaries=[],
-             datas=[('C:\\Python27\\opencv_ffmpeg331_64.dll', '.')],
+             datas=[('codec\\opencv_ffmpeg331_64.dll', '.')],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],

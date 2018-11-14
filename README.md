@@ -3,19 +3,20 @@ Tool to help researchers annotate videos, created by Toni-Lee Sterley and Nielen
 
 ## Using the Annotator
 ##### Requirements
+- Python
 - [OpenCV](https://pypi.org/project/opencv-python/) (recommended 3.3.1)
 - [Kivy](https://kivy.org/#home) (recommended 1.10.0)
 - [PyYAML](https://pyyaml.org/wiki/PyYAML) (recommended 3.12)
 - [NumPy](http://www.numpy.org/) (recommended 1.13.3)
 
 ##### Usage
-The annotator can be started using the provided "main_menu.exe" or by running the "main_menu.py" file with Python (e.g. by typing `python main_menu.py` in Command Prompt).
+The annotator can be started using the provided "main_menu.exe" or by running the "main_menu.py" file with Python (e.g. by navigating to the project folder and typing `python main_menu.py` in Command Prompt).
 
 From the main menu, picking "Load" will allow the user to select a video for annotation.
 
 ![Choose Video](/images/select_video.PNG?raw=true "Choose Video")
 
-Once a video is selected, the app will display it. Also displayed will be a description of possible keyboard inputs. These include annotations that can be marked, as well as control keys. Customising possible behaviours is done via the config file, described in the "Config File" section below
+Once a video is selected, the app will display it. Also displayed will be a description of possible keyboard inputs. These include annotations that can be marked, as well as control keys. Customising possible behaviours is done via the config file, described in the "Config File" section below.
 
 ![Video Chosen](/images/video_display.PNG?raw=true "Left: Keyboard Inputs, Right: Video Display")
 
@@ -35,6 +36,9 @@ Markable annotations are stored in "config\\default_config.yaml". They are store
 Where the BGR values set the annotation colour, and each range from 0-1. The indentation for each annotation must match the others. The default file has 3 example annotations which can be edited, replaced and/or used as reference for any new additions.
 
 ##### Colour plots
-In addition to saving the annotations, the app will generate simple colour plots, using the annotation colours. These plots are saved in the location as the annotations ("results\\<annotation_name>").
+In addition to saving the annotations, the app will generate simple colour plots, using the annotation colours. These plots are saved in the same location as the annotations ("results\\<annotation_name>").
 
-## Creating an executable file
+## Creating an executable file (Windows)
+[PyInstaller](https://www.pyinstaller.org/) was used to create a runnable `.exe` file ("main_menu.exe"). A new `.exe` can be created using the provided `.spec` file by navigating to the project folder and typing `pyinstaller main_menu.spec` in Command Prompt.
+
+Note, "main_menu.exe" will be created in the "dist" folder, but must be moved to the main project folder to work.
