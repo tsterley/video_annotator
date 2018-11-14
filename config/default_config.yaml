@@ -1,6 +1,5 @@
 actions:
-    default: 2
-    selectable: 
+    selectable:
         - name: sniff
           key: a
           colour: 1.0,0.8,0.8
